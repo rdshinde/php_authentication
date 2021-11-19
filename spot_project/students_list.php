@@ -3,43 +3,28 @@
   include_once 'includes/dbh.inc.php';
 ?>
     <main class="container d-flex justify-content-center align-items-center flex-column">
-      <div class="row display-3 m-5 p-lg-5 shadow rounded h-100 text-info ">
+      <div class="row display-3 m-5 p-lg-2 rounded h-100 text-info rounded ">
 
       
-      <h1 class="d-flex justify-content-center align-items-center flex-column ">
-      <?php
-              if(isset($_SESSION["userid"])){
-                echo 'Welcome Admin'."  "."<b style='color:red;'>".$_SESSION["name"]."</b>" ;
-              }
-              else{
-                echo 'Welcome To Authentication Homepage';
-              }
-
-              
-            ?>
-       
-      </h1>
+      <h1 class="d-flex justify-content-center align-items-center flex-column ">Registered Students</h1>
       </div>
-              <div>
-              <div class="table-responsive">
-          <table class="table table-hover p-3">
-            <thead>
-              <tr>
-                <th scope="col">Sr.No.</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Branch</th>
-                <th scope="col">Email</th>
-                
-              </tr>
-            </thead>
-            <tbody>
+          <div class="table-responsive shadow p-5 rounded border">
+            <table class="table table-hover p-3">
+              <thead>
+                <tr>
+                  <th scope="col">Sr.No.</th>
+                  <th scope="col">Firstname</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Email</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
                 <?php 
-                
                 $sql = "SELECT * FROM users";
                   $results = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($results);
-
                   if($resultCheck > 0){
                     $sr = 1;
                     while($row = mysqli_fetch_assoc($results)){
@@ -54,18 +39,16 @@
                       <td>'.$branch.'</td>
                       <td>'.$email.'</td>
                           </tr>';
-                        $sr = $sr+1;
-                      
+                        $sr = $sr+1;  
                     }
                   }
                   else{
                     echo '<h1 class="d-flex justify-content-center align-items-center flex-column "> No Data Found </h1>';
                   }
                 ?>
-                </tbody>
-          </table>
-      </div>
-              </div>
+              </tbody>
+            </table>
+          </div>
     </main>
   </body>
 </html>

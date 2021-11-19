@@ -109,7 +109,8 @@ function loginUser($conn,$email,$pwd){
     else if($checkPwd === true){
         session_start();
         $_SESSION["userid"] = $emailExists["usersId"];
-        $_SESSION["useremail"] = $emailExists["usersEmail"];
+        $_SESSION["name"] = $emailExists["usersFirstname"];
+        $_SESSION["isAdmin"] = $emailExists["isAdmin"];
        
         header("location: ../index.php");
         exit();

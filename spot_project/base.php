@@ -50,12 +50,16 @@
                 >Home</a
               >
             </li>
-            <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="./signup.php"
-                >Signup</a
-              >
-            </li>
-            <?php
+            
+           <?php
+              if(isset($_SESSION["userid"]) && $_SESSION["isAdmin"] === 1){
+                echo '<li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="./students_list.php"
+                  >Admin</a
+                >
+                 </li>';
+              }
+
               if(isset($_SESSION["userid"])){
                 echo '<li class="nav-item">
                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="includes/logout.inc.php"
@@ -68,8 +72,15 @@
                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="./login.php"
                   >Login</a
                 >
-              </li>';
+              </li>
+              <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="./signup.php"
+                >Signup</a
+              >
+               </li>';
               }
+              
+              
             ?>
             
             

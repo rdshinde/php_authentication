@@ -8,7 +8,7 @@
       <h1 class="d-flex justify-content-center align-items-center flex-column ">
       <?php
               if(isset($_SESSION["userid"])){
-                echo 'Welcome'."  "."<b style='color:red;'>".$_SESSION["useremail"]."</b>" ;
+                echo 'Welcome'."  "."<b style='color:red;'>".$_SESSION["name"]."</b>" ;
               }
               else{
                 echo 'Welcome To Authentication Homepage';

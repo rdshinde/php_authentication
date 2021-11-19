@@ -22,7 +22,7 @@
               </thead>
               <tbody>
                 <?php 
-                $sql = "SELECT * FROM users";
+                $sql = "SELECT * FROM users WHERE isAdmin=0";
                   $results = mysqli_query($conn, $sql);
                   $resultCheck = mysqli_num_rows($results);
                   if($resultCheck > 0){

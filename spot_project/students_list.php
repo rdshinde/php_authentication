@@ -3,12 +3,12 @@
   include_once 'includes/dbh.inc.php';
 ?>
     <main class="container d-flex justify-content-center align-items-center flex-column">
-      <div class="row display-3 m-5 p-lg-2 rounded h-100 text-info rounded ">
+      <div class=" container display-3 m-5 p-lg-2 rounded h-100 text-info rounded ">
 
       
       <h1 class="d-flex justify-content-center align-items-center flex-column ">Registered Students</h1>
       </div>
-          <div class="table-responsive shadow p-5 rounded border">
+          <div class="container table-responsive shadow p-5 rounded border col-lg-8 col-xs-12 col-centered">
             <table class="table table-hover p-3">
               <thead>
                 <tr>

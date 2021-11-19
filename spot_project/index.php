@@ -2,7 +2,7 @@
   include_once 'base.php';
 ?>
     <main class="container d-flex justify-content-center align-items-center">
-      <div class="row display-3 m-5 p-lg-5 shadow rounded h-100 text-info ">
+      <div class="container row display-3 m-5 p-lg-5 shadow rounded h-100 text-info ">
 
       
       <h1 class="d-flex justify-content-center align-items-center flex-column ">

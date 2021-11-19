@@ -61,21 +61,21 @@
               }
 
               if(isset($_SESSION["userid"])){
-                echo '<li class="nav-item">
-                <a class="nav-link px-lg-3 py-3 py-lg-4" href="includes/logout.inc.php"
-                  >Logout</a
+                echo '<li class="nav-item ">
+                <a class="nav-link px-lg-3 py-3 py-lg-4 " href="includes/logout.inc.php"
+                  ><span class="btn btn-danger btn-sm">Logout</span></a
                 >
               </li>';
               }
               else{
                 echo '<li class="nav-item">
                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="./login.php"
-                  >Login</a
+                  ><span class="btn btn-secondary btn-sm">Login</span></a
                 >
               </li>
               <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="./signup.php"
-                >Signup</a
+                ><span class="btn btn-info btn-sm">Signup</span></a
               >
                </li>';
               }

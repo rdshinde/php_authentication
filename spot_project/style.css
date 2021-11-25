@@ -11,3 +11,6 @@ a:hover {
 nav a:hover{
     border: none;
 }
+nav{
+  z-index: 10000;
+}

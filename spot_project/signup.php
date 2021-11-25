@@ -88,6 +88,16 @@
               </select>
             </div>
             <div class="mb-3">
+              <label for="rollno" class="form-label">Roll No.</label>
+              <input
+                type="text"
+                name="rollno"
+                class="form-control"
+                id="rollno"
+                placeholder="eg. 19121012"
+              />
+            </div>
+            <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
                 type="email"

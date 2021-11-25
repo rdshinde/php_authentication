@@ -1,9 +1,9 @@
 <?php
 require_once "signup.inc.php";
 
-function emptyInputs($firstName,$lastName,$branch,$email,$pwd,$pwdRepeat){
+function emptyInputs($firstName,$lastName,$branch,$rollno, $email,$pwd,$pwdRepeat){
     $res = null;
-    if(empty($firstName) || empty($lastName) || empty($branch) || empty($email) || empty($pwd) || empty($pwdRepeat)){
+    if(empty($firstName) || empty($lastName) || empty($branch) || empty($email) || empty($pwd) || empty($pwdRepeat) || empty($rollno)){
         $res = true; 
     }else{
         $res = false;
@@ -57,8 +57,8 @@ function emailExists($conn , $email){
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $firstName,$lastName,$branch, $email,$pwd){
-    $sql = "INSERT INTO users (usersFirstname, usersLastname, usersBranch, usersEmail,  usersPassword) VALUES (?, ?, ?, ?, ?)";
+function createUser($conn, $firstName, $lastName, $branch, $rollno, $email,$pwd){
+    $sql = "INSERT INTO users (usersFirstname, usersLastname, usersBranch, usersrollno, usersEmail,  usersPassword) VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
 
@@ -68,7 +68,7 @@ function createUser($conn, $firstName,$lastName,$branch, $email,$pwd){
     }
     else{
         $hashedPwd = base64_encode($pwd);
-        mysqli_stmt_bind_param($stmt, "sssss", $firstName, $lastName, $branch, $email, $hashedPwd);
+        mysqli_stmt_bind_param($stmt, "ssssss", $firstName, $lastName, $branch, $rollno, $email, $hashedPwd);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header("location: ../login.php?err=none");
@@ -76,9 +76,38 @@ function createUser($conn, $firstName,$lastName,$branch, $email,$pwd){
     }
 }
 
+function addFeedback($conn, $name, $branch, $rollno, $subject, $feedback){
+    $sql = "INSERT INTO feedbacks (sname, sbranch, srollno, fsubject, feedback) VALUES (?, ?, ?, ?, ?)";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if(! mysqli_stmt_prepare($stmt,$sql)){
+        header("location: ../index.php?err=stmtFailed");
+        exit();
+    }
+    else{
+        
+        mysqli_stmt_bind_param($stmt, "sssss", $name, $branch, $rollno, $subject, $feedback);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../index.php?err=none");
+        exit();
+    }
+}
+
 function emptyLoginInputs($email, $pwd){
     $res = null;
     if(empty($email) || empty($pwd)){
+        $res = true; 
+    }else{
+        $res = false;
+    }
+    return $res;
+}
+
+function emptyFeedbackInputs($name, $branch, $rollno, $subject, $feedback){
+    $res = null;
+    if(empty($name) || empty($branch) || empty($rollno) || empty($subject) || empty($feedback)){
         $res = true; 
     }else{
         $res = false;
@@ -110,6 +139,9 @@ function loginUser($conn,$email,$pwd){
         session_start();
         $_SESSION["userid"] = $emailExists["usersId"];
         $_SESSION["name"] = $emailExists["usersFirstname"];
+        $_SESSION["lastname"] = $emailExists["usersLastname"];
+        $_SESSION["branch"] = $emailExists["usersBranch"];
+        $_SESSION["rollno"] = $emailExists["usersrollno"];
         $_SESSION["isAdmin"] = $emailExists["isAdmin"];
        
         header("location: ../index.php");

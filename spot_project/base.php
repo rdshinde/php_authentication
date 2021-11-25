@@ -29,9 +29,9 @@
     <title>Homepage</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="mainNav">
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="./index.php">User Authentication</a>
+        <a class="navbar-brand" href="./index.php">Feedback System</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -53,11 +53,16 @@
             
            <?php
               if(isset($_SESSION["userid"]) && $_SESSION["isAdmin"] === 1){
-                echo '<li class="nav-item">
-                <a class="nav-link px-lg-3 py-3 py-lg-4" href="./students_list.php"
-                  >Admin</a
-                >
-                 </li>';
+                echo '<li class="nav-item dropdown m-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Admin Section
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="./feedback.php">Feedbacks</a></li>
+                  <li><a class="dropdown-item" href="./students_list.php">Registered Students</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>';
               }
 
               if(isset($_SESSION["userid"])){

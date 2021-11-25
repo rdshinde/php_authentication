@@ -74,10 +74,7 @@
               }
               else{
                 echo '<li class="nav-item">
-                <a class="nav-link px-lg-3 py-3 py-lg-4" href="./login.php"
-                  ><span class="btn btn-secondary btn-sm">Login</span></a
-                >
-              </li>
+                
               <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="./signup.php"
                 ><span class="btn btn-info btn-sm">Signup</span></a

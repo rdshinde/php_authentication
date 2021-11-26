@@ -1,6 +1,14 @@
 <?php 
   include_once 'base.php';
   include_once 'includes/dbh.inc.php';
+
+  if(isset($_POST["delete_feedback"])){
+    $id = $_POST["delete_feedback"];
+    $query = "DELETE FROM feedbacks WHERE feedbackId=3"; 
+    $result = mysqli_query($conn,$query);
+    header("location: ../feedback.php?err=deleted");
+    exit();
+}
 ?>
 
         <div class="container px-lg-2 my-5">
@@ -46,7 +54,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted h6"><small>'.$branch.' ('.$rollno.')'.'</small></h6>
                                 <p class="card-subtitle mb-2 h5"><strong>'.$subject.'</strong></p>
                                 <p class="card-text lead">'.$feedback.'</p>
-                                <form action"includes/feedback.inc.php" method="GET"><button type="submit" name="delete_feedback" value="'.$id.'" class="btn btn-sm btn-danger mx-3">Delete</button>
+                                <form action"includes/feedback.inc.php" method="POST"><button type="submit" name="delete_feedback" value="'.$id.'" class="btn btn-sm btn-danger mx-3">Delete</button>
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#message" data-bs-whatever="@mdo">Message</button>
                             </div>
                         </div>
@@ -104,3 +112,5 @@
     </div>    
     </body>
 </html>
+
+

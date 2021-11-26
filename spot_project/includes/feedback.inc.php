@@ -24,12 +24,6 @@ else{
     header("location: ../index.php");
 }
 
-if(isset($_GET["delete_feedback"])){
-    $id = $_GET["delete_feedback"];
-    $query = "DELETE FROM feedbacks WHERE feedbackId=$id"; 
-    $result = mysqli_query($conn,$query);
-    header("location: ../feedback.php?err=deleted");
-    exit();
-}
+
 
 ?>

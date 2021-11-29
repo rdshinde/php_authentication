@@ -1,44 +1,10 @@
 <?php 
   include_once 'base.php';
   include_once 'includes/dbh.inc.php';
-  if(isset($_GET["delete_feedback"])){
-    $id = $_GET["delete_feedback"];
-    $query = "DELETE FROM feedbacks WHERE feedbackId=$id"; 
-    $result = mysqli_query($conn,$query);
-    header('Location: '.$_SERVER['PHP_SELF'].'?err=deleted');
-    exit();
-
-  }
-
-
-
 ?>
 
         <div class="container px-lg-2 my-5">
-            <?php
-                if(isset($_GET['err'])){
-                    if($_GET['err'] == "deleted"){
-                        echo '<div class="alert alert-warning text-center" role="alert">
-                        <b>Feedback Deleted Successfully!</b>
-                    </div>';
-                    }
-                    if($_GET['err'] == "message_sent"){
-                        echo '<div class="alert alert-success text-center" role="alert">
-                        <b>Message Sent Successfully!</b>
-                    </div>';
-                    }
-                    if($_GET['err'] == "stmtFailed"){
-                        echo '<div class="alert alert-danger text-center" role="alert">
-                        <b>Something went wrong!</b>
-                    </div>';
-                    }
-                    if($_GET['err'] == "emptyInputs"){
-                        echo '<div class="alert alert-danger text-center" role="alert">
-                        <b>Message cannot be empty!</b>
-                    </div>';
-                    }
-                }
-            ?>
+            <!-- alerts -->
         <div class="p-3 p-lg-2 bg-light rounded-3">
             <h1 class="display-5 text-center mb-5">Messages Sent</h1>
             <div class="m-1 m-lg-1">

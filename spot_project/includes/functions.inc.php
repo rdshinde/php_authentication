@@ -1,5 +1,6 @@
 <?php
-require_once "signup.inc.php";
+
+
 
 function emptyInputs($firstName,$lastName,$branch,$rollno, $email,$pwd,$pwdRepeat){
     $res = null;
@@ -148,6 +149,35 @@ function loginUser($conn,$email,$pwd){
         exit();
     }
 
+}
+
+function emptyMessageInputs($msg){
+    $res = null ;
+    if(empty($msg)){
+        $res = true; 
+    }else{
+        $res = false;
+    }
+    return $res;
+}
+
+function sendMail($conn, $name, $branch, $rollno, $topic, $from, $msg){
+    $timestamp = date("d-m-Y H:i:s");
+    $sql = "INSERT INTO messages (mfor, branch, rollno, topic, mfrom, msg, mtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if(! mysqli_stmt_prepare($stmt,$sql)){
+        header("location: ../feedback.php?err=stmtFailed");
+        exit();
+    }
+    else{
+        mysqli_stmt_bind_param($stmt, "sssssss", $name, $branch, $rollno, $topic, $from, $msg, $timestamp);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../feedback.php?err=message_sent");
+        exit();
+    }
 }
 
 ?>

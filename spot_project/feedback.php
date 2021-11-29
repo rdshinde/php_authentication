@@ -1,22 +1,40 @@
 <?php 
   include_once 'base.php';
   include_once 'includes/dbh.inc.php';
-
-  if(isset($_POST["delete_feedback"])){
-    $id = $_POST["delete_feedback"];
-    $query = "DELETE FROM feedbacks WHERE feedbackId=3"; 
+  if(isset($_GET["delete_feedback"])){
+    $id = $_GET["delete_feedback"];
+    $query = "DELETE FROM feedbacks WHERE feedbackId=$id"; 
     $result = mysqli_query($conn,$query);
-    header("location: ../feedback.php?err=deleted");
+    header('Location: '.$_SERVER['PHP_SELF'].'?err=deleted');
     exit();
-}
+
+  }
+
+
+
 ?>
 
         <div class="container px-lg-2 my-5">
             <?php
                 if(isset($_GET['err'])){
                     if($_GET['err'] == "deleted"){
-                        echo '<div class="alert alert-success" role="alert">
+                        echo '<div class="alert alert-warning text-center" role="alert">
                         <b>Feedback Deleted Successfully!</b>
+                    </div>';
+                    }
+                    if($_GET['err'] == "message_sent"){
+                        echo '<div class="alert alert-success text-center" role="alert">
+                        <b>Message Sent Successfully!</b>
+                    </div>';
+                    }
+                    if($_GET['err'] == "stmtFailed"){
+                        echo '<div class="alert alert-danger text-center" role="alert">
+                        <b>Something went wrong!</b>
+                    </div>';
+                    }
+                    if($_GET['err'] == "emptyInputs"){
+                        echo '<div class="alert alert-danger text-center" role="alert">
+                        <b>Message cannot be empty!</b>
                     </div>';
                     }
                 }
@@ -54,7 +72,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted h6"><small>'.$branch.' ('.$rollno.')'.'</small></h6>
                                 <p class="card-subtitle mb-2 h5"><strong>'.$subject.'</strong></p>
                                 <p class="card-text lead">'.$feedback.'</p>
-                                <form action"includes/feedback.inc.php" method="POST"><button type="submit" name="delete_feedback" value="'.$id.'" class="btn btn-sm btn-danger mx-3">Delete</button>
+                                <form action"#" method="GET" style="display:inline-block;"><button type="submit" name="delete_feedback" value="'.$id.'" class="btn btn-sm btn-danger mx-3">Delete</button></form>
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#message" data-bs-whatever="@mdo">Message</button>
                             </div>
                         </div>
@@ -68,24 +86,28 @@
                                         <div class="modal-body">
                                             <form method="POST" action="includes/message.inc.php">
                                                 <div class="mb-3">
-                                                    <label for="student-name" name="name" class="col-form-label">student Name:</label>
-                                                    <input type="text" class="form-control" value="'.$name.'" id="student-name">
+                                                    <label for="student-name"  class="col-form-label">Student Name:</label>
+                                                    <input type="text" class="form-control" name="name" value="'.$name.'" id="student-name">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="student-branch" name="branch" class="col-form-label" hidden>Branch:</label>
-                                                    <input type="text" class="form-control" value="'.$branch.'" id="student-branch" hidden>
+                                                    <label for="student-branch"  class="col-form-label" hidden>Branch:</label>
+                                                    <input type="text" class="form-control" name="branch" value="'.$branch.'" id="student-branch" hidden>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="student-rollno" name="rollno" class="col-form-label" hidden>Roll No:</label>
-                                                    <input type="text" class="form-control" value="'.$rollno.'" id="student-rollno" hidden>
+                                                    <label for="student-rollno"  class="col-form-label" hidden>Roll No:</label>
+                                                    <input type="text" class="form-control" name="rollno" value="'.$rollno.'" id="student-rollno" hidden>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="student-topic" name="topic" class="col-form-label" hidden>Topic:</label>
-                                                    <input type="text" class="form-control" value="'.$rollno.'" id="student-topic" hidden>
+                                                    <label for="student-topic"  class="col-form-label" hidden>Topic:</label>
+                                                    <input type="text" class="form-control" name="topic" value="'.$subject.'" id="student-topic" hidden>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="message-text" name="message" class="col-form-label">Message:</label>
-                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                    <label for="from"  class="col-form-label">Message From: </label>
+                                                    <input type="text" class="form-control" name="from" value="'.$_SESSION["name"].' '.$_SESSION["lastname"].'" id="from" >
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label">Message:</label>
+                                                    <textarea class="form-control" name="message"  id="message-text"></textarea>
                                                 </div>
                                                 <button type="submit" name="send-message" class="btn btn-success">Send message</button>
                                             </form>
@@ -112,5 +134,3 @@
     </div>    
     </body>
 </html>
-
-

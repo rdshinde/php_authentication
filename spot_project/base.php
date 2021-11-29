@@ -60,7 +60,7 @@
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="./feedback.php">Feedbacks</a></li>
                   <li><a class="dropdown-item" href="./students_list.php">Registered Students</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="./sent_msg.php">Messages Sent</a></li>
                 </ul>
               </li>';
               }

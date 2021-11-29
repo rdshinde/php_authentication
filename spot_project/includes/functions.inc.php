@@ -167,7 +167,7 @@ function sendMail($conn, $name, $branch, $rollno, $topic, $from, $msg){
 
     $stmt = mysqli_stmt_init($conn);
 
-    if(! mysqli_stmt_prepare($stmt,$sql)){
+    if(!mysqli_stmt_prepare($stmt,$sql)){
         header("location: ../feedback.php?err=stmtFailed");
         exit();
     }

@@ -63,9 +63,14 @@
                   <li><a class="dropdown-item" href="./sent_msg.php">Messages Sent</a></li>
                 </ul>
               </li>';
+              echo '<li class="nav-item ">
+                <a class="nav-link px-lg-3 py-3 py-lg-4 " href="includes/logout.inc.php"
+                  ><span class="btn btn-danger btn-sm">Logout</span></a
+                >
+              </li>';
               }
 
-              if(isset($_SESSION["userid"])){
+              if(isset($_SESSION["userid"])&& $_SESSION["isAdmin"] === 0){
                 echo '<li class="nav-item ">
                 <a class="nav-link px-lg-3 py-3 py-lg-4 " href="recieved_msg.php"
                   ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -80,7 +85,7 @@
               </li>';
                 
               }
-              else{
+              else if(!isset($_SESSION["userid"])){
                 echo '<li class="nav-item">
                 
               <li class="nav-item">

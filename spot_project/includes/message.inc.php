@@ -11,6 +11,8 @@ if(isset($_POST["send-message"])){
     $from = $_POST["from"];
     $msg = $_POST["message"];
 
+    
+
     if(emptyMessageInputs($msg) !== false){
         header("location: ../feedback.php?err=emptyInputs");
         exit();

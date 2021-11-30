@@ -162,12 +162,12 @@ function emptyMessageInputs($msg){
 }
 
 function sendMail($conn, $name, $branch, $rollno, $topic, $from, $msg){
-    $timestamp = date("d-m-Y H:i:s");
+    $timestamp = date("Y-m-d H:i:s");
     $sql = "INSERT INTO messages (mfor, branch, rollno, topic, mfrom, msg, mtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
 
-    if(!mysqli_stmt_prepare($stmt,$sql)){
+    if(! mysqli_stmt_prepare($stmt,$sql)){
         header("location: ../feedback.php?err=stmtFailed");
         exit();
     }

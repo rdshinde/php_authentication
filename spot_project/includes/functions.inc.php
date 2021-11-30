@@ -41,10 +41,10 @@ function emailExists($conn , $email){
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("location: ../signup.php?err=stmtFailed");
+        header("location: ../signup.php?err=stmt-Failed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "s",$email);
+    mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
 
     $data = mysqli_stmt_get_result($stmt);
@@ -58,12 +58,11 @@ function emailExists($conn , $email){
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $firstName, $lastName, $branch, $rollno, $email,$pwd){
-    $sql = "INSERT INTO users (usersFirstname, usersLastname, usersBranch, usersrollno, usersEmail,  usersPassword) VALUES (?, ?, ?, ?, ?, ?)";
+function createUser($conn, $firstName, $lastName, $branch, $rollno, $email, $pwd){
+    $sql = "INSERT INTO users (usersFirstname, usersLastname, usersBranch, usersrollno, usersEmail, usersPassword) VALUES (?, ?, ?, ?, ?, ?);";
 
     $stmt = mysqli_stmt_init($conn);
-
-    if(! mysqli_stmt_prepare($stmt,$sql)){
+    if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../signup.php?err=stmtFailed");
         exit();
     }
